@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContactHub - Smart Contact Manager</title>
+    <link rel="shortcut icon" href="imgs/contact.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/all.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+        <div class="n-con d-flex mx-4 ">
+            <div class="n-icon mx-3">
+                <span><i class="fa-solid fa-address-book"></i></span>
+            </div>
+            <div class="n-txt">
+                <h5 class="fs-4 fw-bold my-0">Contact<span>Hub</span></h5>
+                <p class="my-0 fw-medium text-secondary">Smart Contact Manager</p>
+            </div>
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mx-2 align-items-center">
+         <li class="nav-item mx-2">
+         <a class="nav-link" aria-current="page" href="#">
+            <div class="my-btn">
+                <button id="addContactBtn"><span><i class="fa-solid fa-plus fa-xs" style="color: #ffffff;"></i></span> Add Contact</button>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="#">
+            <span><i class="fa-solid fa-bell"></i></span>
+          </a>
+        </li>
+                <li class="nav-item mx-2">
+          <a class="nav-link" href="#">
+            <span><i class="fa-solid fa-gear"></i></span>
+          </a>
+        </li>
+                <li class="nav-item mx-2">
+          <a class="nav-link" href="#">
+            <div class="myimg">
+                <img src="imgs/avatar-4.jpg" alt="aa">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="py-5 my-3">
+  <div class="container-fluid py-5">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="inner">
+          <div class="card-1 d-flex align-items-center">
+          <div class="card1-icon mx-3">
+            <span><i class="fa-solid fa-users"></i></span>
+          </div>
+          <div class="card1-txt">
+            <p class="my-0">Total</p>
+            <span class="my-0" id="totalContacts">0</span>
+          </div>
+          </div>
+        </div>
+      </div>
+            <div class="col-md-4" id="favouriteContacts">
+        <div class="inner">
+          <div class="card-2 d-flex align-items-center">
+          <div class="card2-icon mx-3">
+            <span><i class="fa-solid fa-star"></i></span>
+          </div>
+          <div class="card2-txt">
+            <p class="my-0">Favorites</p>
+            <span class="my-0">0</span>
+          </div>
+          </div>
+        </div>
+      </div>
+            <div class="col-md-4" id="emergencyContacts">
+        <div class="inner">
+          <div class="card-3 d-flex align-items-center">
+          <div class="card3-icon mx-3">
+            <span><i class="fa-solid fa-heart-pulse"></i></span>
+          </div>
+          <div class="card3-txt">
+            <p class="my-0">Emergency</p>
+            <span class="my-0">0</span>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container-fluid">
+    <div class="sec-txt">
+      <h3 class="fs-2 fw-bolder">All Contacts</h3>
+      <p class=" text-secondary">Manage and organize your <span id="totalCount">0</span> contacts</p>
+    </div>
+    <div class="row">
+          <div class="col-md-8">
+            <div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+  <input type="text" class="form-control" id="contactSearch" oninput="searchContact(this)" placeholder="Search by name,phone,or email.." aria-label="Username" aria-describedby="basic-addon1">
+</div>
+<div class="bottom text-center py-5" id="noAnyContact">
+  <div class="bottom-icon">
+    <span><i class="fa-solid fa-address-book"></i></span>
+  </div>
+  <div class="bottom-txt py-3">
+    <h4>No contacts found</h4>
+    <p>Click "Add Contact" to get started</p>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row g-3" id="rowData">
+  </div>
+</div>
+    </div>
+    <div class="col-md-4">
+      <div class="fav-card">
+        <div class="fav-c-top d-flex align-items-center">
+        <div class="fav-card-icon mx-2">
+          <span><i class="fa-solid fa-star"></i></span>
+        </div>
+        <div class="fav-card-txt">
+          <span>Favorites</span>
+          <p>Quick access to starred contacts</p>
+        </div>
+        </div>
+        <div class="fav-c-bottom py-5">
+          <p>No favorites yet</p>
+        </div>
+      </div>
+      <div class="emr-card my-3">
+        <div class="emr-c-top d-flex align-items-center">
+        <div class="emr-card-icon mx-2">
+          <span><i class="fa-solid fa-heart-pulse"></i></span>
+        </div>
+        <div class="emr-card-txt">
+          <span>Emergency</span>
+          <p>Important contacts for urgent calls</p>
+        </div>
+        </div>
+        <div class="emr-c-bottom py-5">
+          <p>No emergency contacts</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="modal d-none" id="contactModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Contact</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="ch-photo text-center my-3">
+          <div class="chphoto-icon">
+            <span><i class="fa-solid fa-user"></i></span>
+          </div>
+          <div class="chphoto-btn py-3">
+            <input type="file" id="fileInput" class="d-none" >
+            <button id="uploadBtn" onclick=" uploadImage()"><span><i class="fa-solid fa-camera" style="color: gray;"></i></span> Change Photo</button>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row g-3">
+            <div class="col-md-12">
+              <div class="inner">
+             <label for="fullName" class="form-label">Full Name *</label>
+             <input type="text" class="form-control" id="fullName" oninput="validateName()" placeholder="Enter full name">
+             <p class="alert alert-danger d-none" id="errorName">Name should contain only letters and spaces (2-50 characters)</p>
+              </div>
+            </div>
+              <div class="col-md-12">
+              <div class="inner">
+              <label for="phonenumber" class="form-label">Phone Number *</label>
+               <input type="text" class="form-control" id="phonenumber" oninput="validatePhoneNumber()" placeholder="e.g.,01023567419">
+               <p class="alert alert-danger d-none" id="errorNum">Please enter a valid Egyptian phone number</p>
+              </div>
+            </div>
+              <div class="col-md-12">
+              <div class="inner">
+            <label for="emailaddress" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="emailaddress" oninput="validateMailAddress()" placeholder="name@example.com">
+            <p class="alert alert-danger d-none" id="errorMail">Please enter a valid email address</p>
+              </div>
+            </div>
+              <div class="col-md-12">
+              <div class="inner">
+              <label for="address" class="form-label">Address</label>
+               <input type="text" class="form-control" id="address" placeholder="Enter address">
+              </div>
+            </div>
+             <div class="col-md-12">
+              <div class="inner">
+                <span>Group</span>
+                <select class="form-select" aria-label="Default select example" id="sgroup">
+                <option selected>Select a group</option>
+                <option value="1">Family</option>
+                <option value="2">Friends</option>
+                <option value="3">Work</option>
+                <option value="4">School</option>
+                <option value="5">Other</option>
+              </select>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="inner">
+                <span>Notes</span>
+                <div class="form-floating">
+                <label for="notes"></label>
+                <textarea class="form-control" placeholder="Add notes about this contact" id="notes"></textarea>
+              </div>
+              </div>
+            </div>
+            <div class="options" id="option">
+                <label><input id="favCheck" type="checkbox" /> <span><i class="fa-solid fa-star" style="color: #FFD43B;"></i></span> Favorite</label>
+                <label><input id="emCheck" type="checkbox" /> <span><i class="fa-solid fa-heart-pulse" style="color: #fd0851;"></i></span> Emergency</label>
+            </div>
+          <div class="col-md-6">
+          <div class="inner">
+          <button type="button" class="btn w-100 btn-secondary"  id="cancelBtn" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+           <div class="col-md-6">
+          <div class="inner">
+            <button type="button" class="btn w-100 btn-primary" onclick="addnewContact(), closeForm()"  id="addnewcontact">Save changes</button>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
